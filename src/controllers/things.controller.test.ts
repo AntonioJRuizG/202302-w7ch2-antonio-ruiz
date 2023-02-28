@@ -1,10 +1,10 @@
-import { Response, Request, NextFunction } from 'express';
-
-import { ThingsFileRepo } from '../repository/things.file.repo';
+import { Response, Request } from 'express';
+import { Thing } from '../entities/thing';
+import { Repo } from '../repository/repo.interface';
 import { ThingsController } from './things.controller';
 
 describe('Given ThingsController', () => {
-  const repo: ThingsFileRepo = {
+  const repo: Repo<Thing> = {
     create: jest.fn(),
     query: jest.fn(),
     queryId: jest.fn(),
