@@ -4,7 +4,6 @@ import { ThingsMongoRepo } from '../repository/things.mongo.repo.js';
 
 // eslint-disable-next-line new-cap
 export const thingsRouter = Router();
-// Const repo = new ThingsFileRepo();
 const repo = new ThingsMongoRepo();
 const controller = new ThingsController(repo);
 

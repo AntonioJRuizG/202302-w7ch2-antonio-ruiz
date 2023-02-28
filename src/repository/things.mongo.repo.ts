@@ -33,7 +33,7 @@ export class ThingsMongoRepo implements Repo<Thing> {
     debug('update');
     const data = await ThingModel.findByIdAndUpdate(info.id, info, {
       new: true,
-    }); // Mejor que update, findbyidandupdate
+    });
     if (!data) throw new HTTPError(404, 'Not found', 'ID not found in update');
     return data;
   }

@@ -4,7 +4,6 @@ import { Thing } from '../entities/thing';
 const thingSchema = new Schema<Thing>({
   name: {
     type: String,
-    // Criteros de validacion
     requiered: true,
     unique: true,
   },

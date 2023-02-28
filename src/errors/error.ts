@@ -3,7 +3,6 @@ export interface CustomError extends Error {
   statusMessage: string;
 }
 
-// La clase HTTPError hereda e implementa una interfaz
 export class HTTPError extends Error implements CustomError {
   constructor(
     public statusCode: number,
@@ -15,6 +14,3 @@ export class HTTPError extends Error implements CustomError {
     this.name = 'HTTPError';
   }
 }
-
-/* Const e = new Error()
-e. el error naivo de javascript tiene 4 metodos, en nuestra interface le metemos los que queramos extra, como estado, fecha, etc.. del error */
