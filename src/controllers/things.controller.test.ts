@@ -23,17 +23,77 @@ describe('Given ThingsController', () => {
 
   const controller = new ThingsController(repo);
 
-  describe('getAll', () => {
-    test('Then it should ... if there ara NOT errors', async () => {
+  describe('Given getAll method', () => {
+    test('Then it should be called if there are NOT errors', async () => {
       await controller.getAll(req, resp, next);
       expect(repo.query).toHaveBeenCalled();
       expect(resp.json).toHaveBeenCalled();
     });
 
-    test('Then it should ... if there are errors', async () => {
+    test('Then it should have been called if there are errors', async () => {
       (repo.query as jest.Mock).mockRejectedValue(new Error());
       await controller.getAll(req, resp, next);
       expect(repo.query).toHaveBeenCalled();
+      expect(next).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given get method', () => {
+    test('Then it should have been called if there are NOT errors', async () => {
+      await controller.get(req, resp, next);
+      expect(repo.queryId).toHaveBeenCalled();
+      expect(resp.json).toHaveBeenCalled();
+    });
+
+    test('Then it should call next if there are errors', async () => {
+      (repo.queryId as jest.Mock).mockRejectedValue(new Error());
+      await controller.get(req, resp, next);
+      expect(repo.queryId).toHaveBeenCalled();
+      expect(next).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given post method', () => {
+    test('Then it should have been called if there are NOT errors', async () => {
+      await controller.post(req, resp, next);
+      expect(repo.create).toHaveBeenCalled();
+      expect(resp.json).toHaveBeenCalled();
+    });
+
+    test('Then it should call next if there are errors', async () => {
+      (repo.create as jest.Mock).mockRejectedValue(new Error());
+      await controller.post(req, resp, next);
+      expect(repo.create).toHaveBeenCalled();
+      expect(next).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given patch method', () => {
+    test('Then it should have been called if there are NOT errors', async () => {
+      await controller.patch(req, resp, next);
+      expect(repo.update).toHaveBeenCalled();
+      expect(resp.json).toHaveBeenCalled();
+    });
+
+    test('Then it should call next if there are errors', async () => {
+      (repo.update as jest.Mock).mockRejectedValue(new Error());
+      await controller.patch(req, resp, next);
+      expect(repo.update).toHaveBeenCalled();
+      expect(next).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given delete method', () => {
+    test('Then it should have been called if there are NOT errors', async () => {
+      await controller.delete(req, resp, next);
+      expect(repo.destroy).toHaveBeenCalled();
+      expect(resp.json).toHaveBeenCalled();
+    });
+
+    test('Then it should call next if there are errors', async () => {
+      (repo.destroy as jest.Mock).mockRejectedValue(new Error());
+      await controller.delete(req, resp, next);
+      expect(repo.destroy).toHaveBeenCalled();
       expect(next).toHaveBeenCalled();
     });
   });
