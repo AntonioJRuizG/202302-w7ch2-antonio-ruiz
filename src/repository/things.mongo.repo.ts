@@ -10,6 +10,14 @@ export class ThingsMongoRepo implements Repo<Thing> {
     debug('Instantiate');
   }
 
+  // Esto lo traemos aqui como funcionalidad extra, porque en el users repo es necesario
+  async search(query: { key: 'string'; value: unknown }) {
+    debug('search');
+    const data = await ThingModel.find({ [query.key]: query.value });
+    // Data es un array que puede venir vacío o con el resultado de busqueda
+    return data;
+  }
+
   async query(): Promise<Thing[]> {
     debug('query');
     const data = await ThingModel.find();

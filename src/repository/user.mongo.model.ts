@@ -1,27 +1,19 @@
 import { model, Schema } from 'mongoose';
-import { Thing } from '../entities/thing';
+import { User } from '../entities/user';
 
-const thingSchema = new Schema<Thing>({
-  name: {
+const userSchema = new Schema<User>({
+  email: {
     type: String,
     requiered: true,
     unique: true,
   },
-  interestingScore: {
-    type: Number,
+  password: {
+    type: String,
     requierd: true,
-    min: 0,
-    max: 10,
-  },
-  importantScore: {
-    type: Number,
-    requierd: true,
-    min: 0,
-    max: 10,
   },
 });
 
-thingSchema.set('toJSON', {
+userSchema.set('toJSON', {
   transform(_document, returnedObject) {
     returnedObject.id = returnedObject._id;
     delete returnedObject.__v;
@@ -30,4 +22,4 @@ thingSchema.set('toJSON', {
   },
 });
 
-export const ThingModel = model('Thing', thingSchema);
+export const UserModel = model('User', userSchema, 'users');

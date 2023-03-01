@@ -7,6 +7,7 @@ describe('Given ThingsController', () => {
   const repo: Repo<Thing> = {
     create: jest.fn(),
     query: jest.fn(),
+    search: jest.fn(),
     queryId: jest.fn(),
     update: jest.fn(),
     destroy: jest.fn(),
