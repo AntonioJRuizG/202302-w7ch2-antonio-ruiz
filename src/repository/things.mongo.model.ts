@@ -21,4 +21,13 @@ const thingSchema = new Schema<Thing>({
   },
 });
 
+thingSchema.set('toJSON', {
+  transform(_document, returnedObject) {
+    returnedObject.id = returnedObject._id;
+    delete returnedObject.__v;
+    delete returnedObject._id;
+    delete returnedObject.password; // Mecanismo de seguridad que evita sacar pw hacia fuera
+  },
+});
+
 export const ThingModel = model('Thing', thingSchema);
