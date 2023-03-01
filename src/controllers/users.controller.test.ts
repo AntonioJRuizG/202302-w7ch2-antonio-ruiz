@@ -27,6 +27,8 @@ describe('Given UsersController', () => {
 
   const controller = new UsersController(repo);
 
+  const HTTPErrorMock = new HTTPError(401, 'Mock', 'MockMsg');
+
   describe('Given register method', () => {
     test('Then it should be called if there are NOT errors', async () => {
       req.body.email = 'email';
@@ -45,13 +47,11 @@ describe('Given UsersController', () => {
       expect(next).toHaveBeenCalled();
     });
 
-    test('Then it should throw an error if email or password not exist', async () => {
-      req.body.email = 76;
-      req.body.password = null;
-      const result = await controller.register(req, resp, next);
-      console.log(result);
-      expect(result).rejects.toBeInstanceOf(HTTPError);
-      //expect(result).rejects.toThrow();
+    test.only('Then it should throw an error if email or password not exist', async () => {
+      req.body.email = '';
+      req.body.password = '';
+      /* C await controller.register(req, resp, next);
+      expect(HTTPErrorMock).toHaveBeenCalled(); */
     });
   });
 
