@@ -60,6 +60,7 @@ export class ThingsController {
     try {
       debug('delete');
       await this.repo.destroy(req.params.id);
+      // El destroy no es asincrono, porque no esperamos que devuelva nada de la base de datos. Pero el await hace que en caso de fallar el destroy, lance un error si la promesa no se resuelve positivamente
       resp.json({
         results: [],
       });
