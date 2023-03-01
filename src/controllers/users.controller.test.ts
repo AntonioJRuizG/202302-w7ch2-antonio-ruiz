@@ -3,7 +3,7 @@ import { Thing } from '../entities/thing';
 import { Repo } from '../repository/repo.interface';
 import { ThingsController } from './things.controller';
 
-describe('Given ThingsController', () => {
+describe('Given UsersController', () => {
   const repo: Repo<Thing> = {
     create: jest.fn(),
     query: jest.fn(),
