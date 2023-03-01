@@ -4,6 +4,7 @@ import cors from 'cors';
 import { thingsRouter } from './routers/things.router.js';
 import { CustomError } from './errors/error.js';
 import createDebug from 'debug';
+import { usersRouter } from './routers/users.router.js';
 const debug = createDebug('W6:app');
 export const app = express();
 app.disable('x-powered-by');
@@ -23,6 +24,7 @@ app.use((_req, _resp, next) => {
 });
 
 app.use('/things', thingsRouter);
+app.use('/user', usersRouter);
 
 app.get('/', (_req, resp) => {
   resp.json({
