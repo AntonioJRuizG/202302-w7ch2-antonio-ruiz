@@ -33,7 +33,7 @@ describe('Given UsersController', () => {
   describe('Given register method from UsersController', () => {
     test('Then it should be called if there are NOT errors', async () => {
       req.body.email = 'email';
-      req.body.password = 'pw';
+      req.body.password = 'test';
       // Instanciar clase controller
       await controller.register(req, resp, next);
 
@@ -44,7 +44,7 @@ describe('Given UsersController', () => {
 
     test('Then if there is no email then an error should be catched and call next()', async () => {
       req.body.email = '';
-      req.body.password = 'pw';
+      req.body.password = 'test';
       // S(mockRepo.create as jest.Mock).mockRejectedValue(HTTPErrorMock);
       await controller.register(req, resp, next);
       expect(mockRepo.create).toHaveBeenCalled();
@@ -98,7 +98,7 @@ describe('Given UsersController', () => {
       expect(next).toHaveBeenCalled();
     });
 
-    test('Then if there is no pw an error should be catch and should call next()', async () => {
+    test('Then if there is no pass an error should be catch and should call next()', async () => {
       req.body.email = 'test';
       req.body.password = '';
       // (mockRepo.search as jest.Mock).mockResolvedValue(['test']);
